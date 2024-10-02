@@ -46,9 +46,34 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
+
         double P = Double.parseDouble(principalstring);
+
+        if (P < 20000 || P > 9000000) {
+            emiamt.setText("The morgage amount needs to be betweem 20000 and 9000000");
+            emiamt.setVisibility(View.VISIBLE);
+            return;
+
+        }
+
         double AIR = Double.parseDouble(interestRatestring);
+
+        if (AIR <= 0 || AIR > 100) {
+            emiamt.setText("The interest rate needs to be betweem 0 and 100");
+            emiamt.setVisibility(View.VISIBLE);
+            return;
+
+        }
+
         int n = Integer.parseInt(tenurestring);
+
+        if (n <= 0 || n > 100) {
+            emiamt.setText("The amount of years needs to be betweem 1 and 30");
+            emiamt.setVisibility(View.VISIBLE);
+            return;
+
+        }
+
         n = n * 12;
         double r = (AIR / 100) / 12;
         double E = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
